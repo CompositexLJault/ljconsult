@@ -570,11 +570,11 @@
     .navlinks{
       position:absolute; top:100%; left:0; right:0;
       flex-direction:column; align-items:stretch; gap:2px;
-      background:var(--paper); border-bottom:1px solid var(--line);
-      padding:10px 24px 18px;
+      background:var(--paper); border-bottom:1px solid transparent;
+      padding:0 24px;
       max-height:0; overflow:hidden;
-      transition:max-height .35s var(--ease);
+      transition:max-height .35s var(--ease), padding .35s var(--ease), border-color .35s ease;
     }
-    .topnav.nav-open .navlinks{ max-height:320px; }
+    .topnav.nav-open .navlinks{ max-height:320px; padding:10px 24px 18px; border-bottom-color:var(--line); }
     .navlinks a{ padding:12px 14px; border-radius:12px; }
   }
