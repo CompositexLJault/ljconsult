@@ -76,8 +76,27 @@
         });
       });
 
+      function getFocusable(container){
+        return Array.prototype.slice.call(container.querySelectorAll(
+          'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+        ));
+      }
+
       document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape' && activeOverlay) closeLegal();
+        if(e.key === 'Escape' && activeOverlay){ closeLegal(); return; }
+        if(e.key === 'Tab' && activeOverlay){
+          var focusable = getFocusable(activeOverlay);
+          if(!focusable.length) return;
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+          if(e.shiftKey && document.activeElement === first){
+            e.preventDefault();
+            last.focus();
+          } else if(!e.shiftKey && document.activeElement === last){
+            e.preventDefault();
+            first.focus();
+          }
+        }
       });
     })();
 
@@ -107,17 +126,37 @@
       var toggle = document.getElementById('navtoggle');
       var links = document.getElementById('navlinks');
       if (!toggle || !links) return;
+      function isMobile(){
+        return window.matchMedia('(max-width: 860px)').matches;
+      }
+      function syncInert(){
+        var open = nav.classList.contains('nav-open');
+        if (isMobile() && !open) {
+          links.setAttribute('inert', '');
+        } else {
+          links.removeAttribute('inert');
+        }
+      }
       function close(){
         nav.classList.remove('nav-open');
         toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Ouvrir le menu');
+        syncInert();
       }
       toggle.addEventListener('click', function(){
         var open = nav.classList.toggle('nav-open');
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+        syncInert();
       });
       links.addEventListener('click', function(e){
         if (e.target.tagName === 'A') close();
       });
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && nav.classList.contains('nav-open')) close();
+      });
+      window.addEventListener('resize', syncInert);
+      syncInert();
     })();
 
     // Scroll reveal

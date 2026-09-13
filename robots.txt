@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /carte/
+
+Sitemap: https://www.jault-conseil.fr/sitemap.xml
