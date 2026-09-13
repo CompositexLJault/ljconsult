@@ -116,16 +116,18 @@
   .topnav{
     position:sticky; top:0; z-index:50;
     background:var(--paper);
-    background:color-mix(in srgb, var(--paper) 70%, transparent);
-    backdrop-filter:blur(18px) saturate(1.4);
-    -webkit-backdrop-filter:blur(18px) saturate(1.4);
+    background:color-mix(in srgb, var(--paper) 42%, transparent);
+    backdrop-filter:blur(22px) saturate(1.9);
+    -webkit-backdrop-filter:blur(22px) saturate(1.9);
     border-bottom:1px solid transparent;
-    transition:height .35s var(--ease), border-color .35s ease, background .35s ease;
+    box-shadow:0 1px 0 color-mix(in srgb, var(--ink) 6%, transparent);
+    transition:height .35s var(--ease), border-color .35s ease, background .35s ease, box-shadow .35s ease;
   }
   .topnav.scrolled{
-    border-bottom-color:var(--line);
+    border-bottom-color:transparent;
     background:var(--paper);
-    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    background:color-mix(in srgb, var(--paper) 58%, transparent);
+    box-shadow:0 1px 0 color-mix(in srgb, var(--ink) 10%, transparent), 0 12px 28px -20px rgba(0,0,0,.35);
   }
   .topnav .wrap{
     display:flex; align-items:center; justify-content:space-between;
@@ -414,7 +416,7 @@
   .portfolio-note{ margin-top:28px; font-size:0.88rem; color:var(--ink-faint); }
 
   .result-stats{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
     background:var(--line); border:1px solid var(--line); border-radius:16px; overflow:hidden;
     margin-bottom:44px;
   }
@@ -428,6 +430,7 @@
     font-variant-numeric:tabular-nums; display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
   }
   .result-value .arrow, .stat-num .arrow{ color:var(--accent); font-weight:500; font-size:0.85em; }
+  .result-value .stat-num{ font-size:inherit; font-weight:inherit; letter-spacing:inherit; }
   .result-value .result-unit{ color:var(--ink-faint); font-weight:500; font-size:0.55em; margin-left:2px; }
   .stat-num.stat-static{ font-size:clamp(1.4rem,2.4vw,1.9rem); }
   .result-label{ margin-top:8px; font-size:0.86rem; color:var(--ink-faint); }

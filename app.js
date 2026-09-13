@@ -181,9 +181,16 @@
     (function(){
       var stats = document.querySelectorAll('.stat-num:not(.stat-static)');
       if (!stats.length) return;
+      function formatCount(value, thousands){
+        if (!thousands) return String(value);
+        var sign = value < 0 ? '-' : '';
+        var digits = String(Math.abs(value)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
+        return sign + digits;
+      }
       function animate(el){
         var target = parseInt(el.getAttribute('data-count'), 10) || 0;
         var suffix = el.getAttribute('data-suffix') || '';
+        var thousands = el.hasAttribute('data-thousands');
         var start = null;
         var duration = 1200;
         function step(ts){
@@ -191,7 +198,7 @@
           var progress = Math.min((ts - start) / duration, 1);
           var eased = 1 - Math.pow(1 - progress, 3);
           var value = Math.round(eased * target);
-          el.textContent = value + (progress >= 1 ? suffix : '');
+          el.textContent = formatCount(value, thousands) + (progress >= 1 ? suffix : '');
           if (progress < 1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
