@@ -187,7 +187,7 @@
           'Téléphone: ' + (data.phone || '—') + '\n\n' +
           data.message
         );
-        return 'mailto:loic.jault@orange.fr?subject=' + subject + '&body=' + body;
+        return 'mailto:loic@jault-conseil.fr?subject=' + subject + '&body=' + body;
       }
 
       function handleSubmit(e){
