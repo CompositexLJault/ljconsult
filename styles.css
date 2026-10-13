@@ -501,6 +501,24 @@
     .fm-down, .fm-decision{ grid-column:1; }
   }
 
+  /* Section « La solution » */
+  .solution-flow{ margin-bottom:32px; }
+  .solution-flow .flow-map{ margin:0; }
+  .solution-proof{ margin-top:28px; }
+  .solution-proof .excel-map{ margin:0; }
+  .solution-start{
+    margin-top:28px; padding:28px 32px; border:1px solid var(--accent); border-radius:18px;
+    background:color-mix(in srgb, var(--accent) 7%, var(--surface));
+    display:flex; align-items:center; justify-content:space-between; gap:28px;
+  }
+  .solution-start-text{ display:flex; flex-direction:column; gap:8px; max-width:68ch; }
+  .solution-start .eyebrow{ margin-bottom:0; }
+  .solution-start p{ margin:0; font-size:1.02rem; color:var(--ink-soft); }
+  .solution-start .btn{ flex-shrink:0; }
+  @media (max-width:780px){
+    .solution-start{ flex-direction:column; align-items:flex-start; padding:24px 22px; }
+  }
+
   .recognition{
     margin-top:20px; padding:20px 26px; background:var(--surface);
     border:1px solid var(--line); border-radius:16px;
