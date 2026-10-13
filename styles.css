@@ -425,6 +425,20 @@
   .card:hover .tag{ transform:translateY(-1px); }
   .tag:hover{ background:color-mix(in srgb, var(--accent) 18%, var(--surface-2)); color:var(--accent); }
   .portfolio-note{ margin-top:28px; font-size:0.88rem; color:var(--ink-faint); }
+  .recognition{
+    margin-top:20px; padding:20px 26px; background:var(--surface);
+    border:1px solid var(--line); border-radius:16px;
+    display:grid; grid-template-columns:auto 1fr; gap:6px 24px; align-items:baseline;
+  }
+  .recognition-label{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:0.72rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--accent); white-space:nowrap;
+  }
+  .recognition-text{ margin:0; font-size:0.95rem; line-height:1.6; color:var(--ink-soft); }
+  .recognition-text strong{ color:var(--ink); font-weight:600; }
+  .recognition-text a{ color:var(--accent); font-weight:500; background-size:100% 1px; }
+  @media (max-width:700px){ .recognition{ grid-template-columns:1fr; padding:18px 20px; } }
 
   .result-stats{
     display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
