@@ -425,6 +425,82 @@
   .card:hover .tag{ transform:translateY(-1px); }
   .tag:hover{ background:color-mix(in srgb, var(--accent) 18%, var(--surface-2)); color:var(--accent); }
   .portfolio-note{ margin-top:28px; font-size:0.88rem; color:var(--ink-faint); }
+  /* Schéma avant / après : fichiers Excel -> un outil */
+  .excel-map{
+    margin:0 0 44px; padding:28px 32px; background:var(--surface);
+    border:1px solid var(--line); border-radius:16px;
+    display:grid; grid-template-columns:1fr 64px 1fr; gap:24px; align-items:start;
+  }
+  .em-side{ display:flex; flex-direction:column; gap:14px; }
+  .em-tag{
+    font-family:"IBM Plex Mono", ui-monospace, monospace; font-size:0.72rem; font-weight:500;
+    letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-faint);
+  }
+  .em-tag-accent{ color:var(--accent); }
+  .em-files{ display:grid; grid-template-columns:repeat(10,1fr); gap:8px; max-width:360px; }
+  .em-file{
+    display:block; aspect-ratio:3/4; border:1px solid var(--line); border-radius:3px;
+    background:
+      repeating-linear-gradient(180deg, transparent 0 4px, color-mix(in srgb, var(--steel) 22%, transparent) 4px 5px) 18% 34%/64% 52% no-repeat,
+      var(--paper);
+  }
+  .em-file:nth-child(3n){ transform:rotate(-4deg); }
+  .em-file:nth-child(4n){ transform:rotate(3deg); opacity:.7; }
+  .em-file:nth-child(5n){ opacity:.55; }
+  .em-tool{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:6px; max-width:300px; padding:12px;
+    border:1px solid var(--accent); border-radius:10px;
+    background:color-mix(in srgb, var(--accent) 7%, var(--surface));
+  }
+  .em-cell{ display:block; height:20px; border-radius:4px; background:var(--accent); }
+  .js .excel-map .em-cell{ opacity:0; transform:scale(.7); transition:opacity .5s var(--ease), transform .5s var(--ease); transition-delay:calc(var(--i) * 45ms + .35s); }
+  .js .excel-map.is-visible .em-cell{ opacity:1; transform:none; }
+  .em-cap{ margin:0; font-size:0.9rem; line-height:1.5; color:var(--ink-soft); max-width:42ch; }
+  .em-cap strong{ color:var(--ink); font-weight:600; }
+  .em-arrow{ position:relative; height:2px; margin-top:78px; background:linear-gradient(90deg, var(--line), var(--accent)); }
+  .em-arrow::after{
+    content:""; position:absolute; right:-1px; top:-4px; width:10px; height:10px;
+    background:var(--accent); clip-path:polygon(0 0,100% 50%,0 100%);
+  }
+  @media (max-width:780px){
+    .excel-map{ grid-template-columns:1fr; padding:22px 20px; gap:18px; }
+    .em-arrow{ width:2px; height:36px; margin-top:0; justify-self:center; background:linear-gradient(180deg, var(--line), var(--accent)); }
+    .em-arrow::after{ right:auto; left:-4px; top:auto; bottom:-1px; clip-path:polygon(0 0,100% 0,50% 100%); }
+  }
+
+  /* Schéma de positionnement : ERP / outil / atelier / décision */
+  .flow-map{ margin:18px 0 0; }
+  .fm-grid{ display:grid; grid-template-columns:1fr 56px 1fr 56px 1fr; align-items:stretch; row-gap:0; }
+  .fm-node{
+    display:flex; flex-direction:column; gap:4px; padding:16px 18px; background:var(--surface);
+    border:1px solid var(--line); border-radius:12px; position:relative;
+  }
+  .fm-k{ font-weight:700; font-size:1rem; letter-spacing:-0.01em; color:var(--ink); }
+  .fm-d{ font-size:0.84rem; line-height:1.45; color:var(--ink-faint); text-wrap:balance; }
+  .fm-tool{ border-color:var(--accent); background:color-mix(in srgb, var(--accent) 9%, var(--surface)); }
+  .fm-tool .fm-d{ color:var(--ink-soft); }
+  .fm-flag{
+    margin-top:6px; font-family:"IBM Plex Mono", ui-monospace, monospace; font-size:0.66rem; font-weight:500;
+    letter-spacing:0.06em; text-transform:uppercase; color:var(--accent);
+  }
+  .fm-link{ align-self:center; height:2px; position:relative; background:color-mix(in srgb, var(--steel) 45%, transparent); overflow:visible; }
+  .fm-link::before, .fm-link::after{
+    content:""; position:absolute; top:-4px; width:9px; height:10px; background:var(--steel);
+  }
+  .fm-link::before{ left:-1px; clip-path:polygon(100% 0,0 50%,100% 100%); }
+  .fm-link::after{ right:-1px; clip-path:polygon(0 0,100% 50%,0 100%); }
+  .fm-down{ grid-column:3; justify-self:center; width:2px; height:28px; background:color-mix(in srgb, var(--steel) 45%, transparent); position:relative; }
+  .fm-down::after{ content:""; position:absolute; left:-4px; bottom:-1px; width:10px; height:9px; background:var(--steel); clip-path:polygon(0 0,100% 0,50% 100%); }
+  .fm-decision{ grid-column:3; }
+  .flow-map figcaption{ margin-top:14px; font-size:0.9rem; color:var(--ink-soft); }
+  @media (max-width:780px){
+    .fm-grid{ grid-template-columns:1fr; }
+    .fm-link{ width:2px; height:28px; justify-self:center; }
+    .fm-link::before{ left:-4px; top:-1px; width:10px; height:9px; clip-path:polygon(0 100%,100% 100%,50% 0); }
+    .fm-link::after{ left:-4px; right:auto; top:auto; bottom:-1px; width:10px; height:9px; clip-path:polygon(0 0,100% 0,50% 100%); }
+    .fm-down, .fm-decision{ grid-column:1; }
+  }
+
   .recognition{
     margin-top:20px; padding:20px 26px; background:var(--surface);
     border:1px solid var(--line); border-radius:16px;
