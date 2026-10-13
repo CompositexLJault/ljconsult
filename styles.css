@@ -687,3 +687,11 @@
     .topnav.nav-open .navlinks{ max-height:320px; padding:10px 24px 18px; border-bottom-color:var(--line); }
     .navlinks a{ padding:12px 14px; border-radius:12px; }
   }
+
+/* Lot 1-2 : grille 4 cartes, capture produit, note de format */
+.compare-grid-4{ grid-template-columns:repeat(2,1fr); }
+.solution-shot{ margin:36px 0 0; }
+.solution-shot img{ display:block; width:100%; height:auto; border:1px solid var(--line); border-radius:12px; box-shadow:0 10px 30px rgba(18,22,26,.12); }
+.solution-shot figcaption{ margin-top:10px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.04em; color:var(--ink-faint); }
+.step-note{ color:var(--ink-soft); }
+@media (max-width:780px){ .compare-grid-4{ grid-template-columns:1fr; } }
